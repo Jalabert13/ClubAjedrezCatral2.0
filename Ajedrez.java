@@ -1,5 +1,6 @@
 
 import java.util.Scanner;
+
     public class Ajedrez {
         static String letraF;
         static String posicion;
@@ -223,4 +224,3 @@ static String Reina() {
 
     }
 
-}
