@@ -95,22 +95,27 @@ public class parte_alvaro {
         }while (error != 1);
         return "";
     }
-    /*public static String Torre () {
-        String d;
+    //TORRE
+    public static String Torre () {
+        String letras = "abcdefgh";
+        String numeros = "12345678";
+        String let = posicion.substring(0,1);
+        String num = posicion.substring(1,2);
+        int l = letras.indexOf(let);
+        int n = Integer.parseInt(num);
+        int opn = 8 - n;
         String mov = "";
-        for (int i = 0; i < 8; i++) {
-            for (int o = 0; o < 8; o++) {
-                d = tab[i][o];
-                if (d.charAt(0) == posicion.charAt(0) && d.charAt(1) == posicion.charAt(1)){
-                    for (int u = 0; u < 8; u++) {
-                        mov += tab[i + u][0];
-                        mov += tab[i][o + u];
-                    }
-                }
-            }
+        int opn2 = opn;
+        int opn3 = 9 - opn;
+        System.out.println(opn3);
+        for (int i = 0; i < numeros.length(); i++){
+            mov += " " + tab[i][l] + " ";
         }
-        return mov;
-    }*/
+        for (int i = 0; i < letras.length(); i++){
+            mov += " " + tab[opn2][i] + " ";
+        }
+        return "Los movimientos que podría hacer son " + mov;
+    }
     //CABALLO
     public static String Caballo(String[][] tab2, String pos2) {
         String p = "";
@@ -165,11 +170,79 @@ public class parte_alvaro {
         }
         return mov;
     }
+    //PEON
+    static String Peon(){
+        String letras = "abcdefgh";
+        String let = posicion.substring(0, 1);
+        String num = posicion.substring(1, 2);
+        int l = letras.indexOf(let);
+        int n = Integer.parseInt(num);
+        int opn = 8 - n;
+        String mov = "";
+        if (blancas.equals("B")) {
+            if (num.equals("2")) {
+                for (int i = 0; i < 2; i++) {
+                    opn--;
+                    mov += " " + tab[opn][l] + " ";
+                }
+            } else if (num.equals("1")) {
+                System.out.println("El peon no puede estar en la casilla " + posicion);
+                mov += "0";
+            } else if (num.equals("8")) {
+                System.out.println("El peon no puede avanzar mas de la casilla " + posicion);
+                mov += "0";
+            } else
+                for (int i = 0; i < 1; i++) {
+                    opn--;
+                    mov += " " + tab[opn][l] + " ";
+                }
+        }else {
+            if (num.equals("7")) {
+                for (int i = 7; i > 5; i--) {
+                    opn--;
+                    mov += " " + tab[opn][l] + " ";
+                }
+            } else if (num.equals("8")) {
+                System.out.println("El peon no puede estar en la casilla " + posicion);
+                mov += 0;
+            } else if (num.equals("1")) {
+                System.out.println("El peon no puede avanzar mas de la casilla " + posicion);
+                mov += "0";
+            } else
+                for (int i = 0; i < 1; i++) {
+                    opn--;
+                    mov += " " + tab[opn][l] + " ";
+                }
+        }
+        return "Los movimientos que podría hacer son " + mov;
+    }
+    //INICIO
     public static void main(String[] args) {
         System.out.println(parte_alvaro.inicio());
-        //System.out.println(ajedrez.Torre());
-        System.out.println(parte_alvaro.Alfil());
-        System.out.println(parte_alvaro.Caballo(tab, posicion));
-        System.out.println(parte_alvaro.Rey(tab, posicion));
+        switch (letraF) {
+            case "P", "p":{
+                System.out.println(parte_alvaro.Peon());
+                break;
+            }case "T", "t": {
+                System.out.println(parte_alvaro.Torre());
+                break;
+            }
+            case "C", "c": {
+                System.out.println(parte_alvaro.Caballo(tab, posicion));
+                break;
+            }
+            case "A", "a": {
+                System.out.println(parte_alvaro.Alfil());
+                break;
+            }
+            case "R", "r": {
+                System.out.println(parte_alvaro.Rey(tab, posicion));
+                break;
+            }
+            case "D", "d": {
+                System.out.println("Ejecutando la dama.");
+                break;
+            }
+        }
     }
 }
