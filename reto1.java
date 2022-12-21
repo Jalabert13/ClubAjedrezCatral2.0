@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class reto1 {
     static String letraF;
@@ -301,7 +302,7 @@ public class reto1 {
                 }
         }
         String mov2 = mov.replaceAll( posicion, " ");
-        return "Los movimientos que podría hacer el Peón son " + mov2;
+        return "Los movimientos que podría hacer el Peón son " + posicion + mov2;
     }
 
     //DAMA
@@ -396,8 +397,10 @@ public class reto1 {
                     break;
                 }
             }
+            try {
             System.out.println("¿Quieres repetir el programa? (1 para seguir)");
             rep = sc.nextInt();
+            }catch (InputMismatchException e){}
         }while (rep == 1);
         System.out.println("Adiós.");
     }
