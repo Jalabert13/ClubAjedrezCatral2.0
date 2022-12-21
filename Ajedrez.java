@@ -97,28 +97,69 @@ import java.util.Scanner;
             }while (error != 1);
             return "";
         }
-/*
+
 static String Reina() {
     String letras = "abcdefgh";
     String numeros = "12345678";
-    String let = posicioninicial.substring(0, 1);
-    String num = posicioninicial.substring(1, 2);
+    String let = posicion.substring(0,1);
+    String num = posicion.substring(1,2);
+    int l = letras.indexOf(let);
+    int n = Integer.parseInt(num);
+    int opn = 8 - n;
     String mov = "";
-    for (int i = 0; i < numeros.length(); i++) {
-        mov += " " + let + numeros.charAt(i) + " ";
+    int opn2 = opn;
+    int opn3 = 9 - opn;
+    System.out.println(opn3);
+    for (int i = 0; i < numeros.length(); i++){
+        if (tab[i][l] != posicion) {
+            mov += " " + tab[i][l] + " ";
+        }
     }
-    for (int i = 0; i < letras.length(); i++) {
-        mov += " " + letras.charAt(i) + num + " ";
+    for (int i = 0; i < letras.length(); i++){
+        if (tab[i][l] != posicion) {
+            mov += " " + tab[opn2][i] + " ";
+        }
     }
-    for (int i = 0; i < letras.length(); i++) {
-        mov += " " + +" ";
-    }
+    String d;
+    for (int i = 0; i < 8; i++) {
+        for (int o = 0; o < 8; o++) {
+            d = tab[i][o];
+            if (d.charAt(0) == posicion.charAt(0) && d.charAt(1) == posicion.charAt(1)){
+                for (int u = 0; u < 8; u++) {
+                    try {
+                        mov += " " + tab[i + u][o + u] + " ";
+                    }catch (ArrayIndexOutOfBoundsException e){
 
+                    }
+                }
+                for (int a = 0; a < 8; a++) {
+                    try {
+                        mov += " " + tab[i - a][o - a] + " ";
+                    } catch (ArrayIndexOutOfBoundsException e) {
 
+                    }
+                }
+                for (int b = 0; b < 8; b++) {
+                    try {
+                        mov += " " + tab[i + b][o - b] + " ";
+                    }catch (ArrayIndexOutOfBoundsException e){
+
+                    }
+                }
+                for (int c = 0; c < 8; c++) {
+                    try {
+                        mov += " " + tab[i - c][o + c] + " ";
+                    }catch (ArrayIndexOutOfBoundsException e){
+
+                    }
+                }
+            }
+        }
+    }
 
     return "Los movimientos que podría hacer son " + mov;
 }
-*/
+
 
         public static String Alfil(){
             String letras = "abcdefgh";
@@ -216,7 +257,7 @@ static String Reina() {
         public static void main(String[] args) {
             Ajedrez fin = new Ajedrez();
             System.out.println(inicio());
-            /*System.out.println(Reina());*/
+            System.out.println(Reina());
             /*System.out.println(Peon());*/ //HECHO
             /*System.out.println(Torre());*/ //HECHO
             System.out.println(Alfil());
