@@ -111,7 +111,6 @@ public class reto1 {
         String mov = "";
         int opn2 = opn;
         int opn3 = 9 - opn;
-        System.out.println(opn3);
         for (int i = 0; i < numeros.length(); i++) {
             mov += "," + tab[i][l];
         }
@@ -302,7 +301,7 @@ public class reto1 {
                 }
         }
         String mov2 = mov.replaceAll( posicion, " ");
-        return "Los movimientos que podría hacer el Peón son " + posicion + mov2;
+        return "Los movimientos que podría hacer el Peón son " + mov2;
     }
 
     //DAMA
@@ -367,32 +366,39 @@ public class reto1 {
 
     //INICIO
     public static void main(String[] args) {
-        System.out.println(reto1.inicio());
-        switch (letraF) {
-            case "P", "p": {
-                System.out.println(reto1.Peon());
-                break;
+        Scanner sc = new Scanner(System.in);
+        int rep = 0;
+        do {
+            System.out.println(reto1.inicio());
+            switch (letraF) {
+                case "P", "p": {
+                    System.out.println(reto1.Peon());
+                    break;
+                }
+                case "T", "t": {
+                    System.out.println(reto1.Torre());
+                    break;
+                }
+                case "C", "c": {
+                    System.out.println(reto1.Caballo(tab, posicion));
+                    break;
+                }
+                case "A", "a": {
+                    System.out.println(reto1.Alfil());
+                    break;
+                }
+                case "R", "r": {
+                    System.out.println(reto1.Rey(tab, posicion));
+                    break;
+                }
+                case "D", "d": {
+                    System.out.println(reto1.Dama());
+                    break;
+                }
             }
-            case "T", "t": {
-                System.out.println(reto1.Torre());
-                break;
-            }
-            case "C", "c": {
-                System.out.println(reto1.Caballo(tab, posicion));
-                break;
-            }
-            case "A", "a": {
-                System.out.println(reto1.Alfil());
-                break;
-            }
-            case "R", "r": {
-                System.out.println(reto1.Rey(tab, posicion));
-                break;
-            }
-            case "D", "d": {
-                System.out.println(reto1.Dama());
-                break;
-            }
-        }
+            System.out.println("¿Quieres repetir el programa? (1 para seguir)");
+            rep = sc.nextInt();
+        }while (rep == 1);
+        System.out.println("Adiós.");
     }
 }
